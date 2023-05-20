@@ -64,27 +64,17 @@ public class Control {
 		employee.setId(io.readShortGraphicInput("Ingrese el ID"));
 		employee.setFirstName(io.readGraphicInput("Ingrese su nombre"));
 		employee.setLastName(io.readGraphicInput("Ingrese su apellido"));
+		employee.setSalary(io.readDoubleGraphicInput("Ingrese su salario"));
+		employee.setNumberChildrens(io.readByteGraphicInput("Ingerse su numero de hijos"));
+		try {
+			employee.setBirthDate(io.readGraphicDate("Fecha de nacimiento - "));
+			employee.setHireDate(io.readGraphicDate("Fecha de contratacion - "));
+		} catch (Exception e) {
+			io.showGraphicErrorMessage("Fecha invalida, porfavor ingrese el empleado otra vez");
+			this.createEmployee();
+		}
 		business.addEmployee(employee);
-		/*
-		new Employee();
-		Date d1 = new Date((short)1, (short)5, (short)2001);
-		Date d2 = new Date((short)12, (short)9, (short)2023);
-		Date d3 = new Date((short)24, (short)12, (short)1999);
-		Date d4 = new Date((short)29, (short)5, (short)2015);
-		Employee employee1 = new Employee((short)1, "Juancho", "Roiz", 130000.0, (byte)1, 120000.0, d1, d2);
-		Employee employee2 = new Employee((short)2, "Benito", "Martine", 180000.0, (byte)0, 125000.0, d3, d4);
-		this.business.addEmployee(employee1);
-		this.business.addEmployee(employee2);
 
-		 */
-	}
-
-	public Date getDate() {
-		Date date = new Date();
-		date.setDay(Short.parseShort(this.io.readGraphicInput("Ingrese el dia : ")));
-		date.setMonth(Short.parseShort(this.io.readGraphicInput("Ingrese el mes : ")));
-		date.setYear(Short.parseShort(this.io.readGraphicInput("Ingrese el año : ")));
-		return date;
 	}
 
 	public void deleteEmployeeData() {

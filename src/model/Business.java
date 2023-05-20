@@ -89,7 +89,7 @@ public class Business {
         IoManager io = new IoManager();
         this.employeesArray[id].setFirstName(io.readGraphicInput("Ingrese el nuevo nombre"));
         this.employeesArray[id].setLastName(io.readGraphicInput("Ingrese el nuevo apellido"));
-        this.employeesArray[id].setSalary(io.readDuoubleGraphicInput("ingrese el nuevo salario"));
+        this.employeesArray[id].setSalary(io.readDoubleGraphicInput("ingrese el nuevo salario"));
         this.employeesArray[id].setNumberChildrens(io.readByteGraphicInput("Ingrese el nuevo número de hijos"));
     }
 

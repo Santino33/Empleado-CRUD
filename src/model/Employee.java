@@ -30,15 +30,42 @@ public class Employee {
 		return this.birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
+	public void setBirthDate(Date birthDate)throws Exception{
+
+		if(birthDate != null) {
+			System.out.println(birthDate);
+			System.out.println(birthDate.getDay() + "// " + birthDate.getMonth() + "// " + birthDate.getYear());
+
+			if (birthDate.getDay() > 0 && birthDate.getDay() <= 31 && birthDate.getMonth() > 0 && birthDate.getMonth() < 12 && birthDate.getYear() > 1900 && birthDate.getYear() < 2023)
+				System.out.println("Si cumple");
+			else {
+				if (birthDate.getDay() > 0 && birthDate.getDay() <= 31) System.out.println("Day: true");
+				  else System.out.println("Day: false "+birthDate.getDay());
+				if (birthDate.getMonth() > 0 && birthDate.getMonth() < 12) System.out.println("Month: true");
+				  else System.out.println("Month: false "+birthDate.getMonth());
+				if (birthDate.getYear() > 1900 && birthDate.getYear() < 2023) System.out.println("Year: true");
+				  else System.out.println("Year: false "+birthDate.getYear());
+			}
+			if (birthDate.getDay() > 0 && birthDate.getDay() <= 31 && birthDate.getMonth() > 0 && birthDate.getMonth() < 12 && birthDate.getYear() > 1900 && birthDate.getYear() < 2023){
+				this.birthDate = birthDate;
+			System.out.println("Ya se asignó la fecha");
+		}
+			else
+				throw new Exception();
+		}else
+			throw new Exception();
 	}
 
 	public Date getHireDate() {
 		return this.hireDate;
 	}
 
-	public void setHireDate(Date hireDate) {
+	public void setHireDate(Date hireDate) throws Exception{
+
+		if (hireDate.getYear() < (short) 1950 || hireDate.getYear()> (short)2023) throw new Exception();
+		System.out.println(hireDate.getYear());
+		if (hireDate.getMonth() < (short)0 || hireDate.getMonth()> (short)12 ) throw new Exception();
+		if (hireDate.getDay() < (short)0 || hireDate.getDay()> (short)31) throw  new Exception();
 		this.hireDate = hireDate;
 	}
 
