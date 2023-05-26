@@ -3,14 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1547549e-e4f6-48ba-9f21-395d99184203" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/bussiness/controller/Control.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/bussiness/controller/Control.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/bussiness/model/Business.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/bussiness/model/Business.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/bussiness/model/Employee.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/bussiness/model/Employee.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/bussiness/view/IoManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/bussiness/view/IoManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/Control.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/Control.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Business.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Business.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/IoManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/IoManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,13 +28,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/willi/Universidad/Programacion 1/Clases programacion"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/willi/Universidad/Programacion 1/Clases programacion&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Run" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="runner.Run" />
