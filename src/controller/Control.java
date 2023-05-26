@@ -34,7 +34,7 @@ public class Control {
 					this.deleteEmployeeData();
 					break;
 				case 4:
-					this.modifiEmployee();
+					this.modifyEmployee();
 					break;
 				case 5:
 					this.printEmployeeData();
@@ -79,11 +79,11 @@ public class Control {
 
 	public void deleteEmployeeData() {
 		short id = Short.parseShort(this.io.readGraphicInput("Ingrese el id del empleado que quiera borrar"));
-		this.business.deleteEmploye(this.business.findEmployee(id));
+		this.business.deleteEmployee(this.business.findEmployee(id));
 		this.printAllEmployees();
 	}
 
-	public void modifiEmployee() {
+	public void modifyEmployee() {
 		short id = Short.parseShort(this.io.readGraphicInput("Ingrese el id del empleado que quiera modificar"));
 		this.business.modify(this.business.findEmployee(id));
 		this.printAllEmployees();
@@ -96,7 +96,7 @@ public class Control {
 		public void printAllEmployees(){
 			String output = "ID   Nombre            Salario         N. Hijos   F. Contratación      F.Nacimiento\n-----------------------------------------------------------------------------------------------------------\n";
 
-			for (Employee employee : business.getEmployeesArray()) {
+			for (Employee employee : business.getEmployeesList()) {
 				if (employee != null) {
 					output += employee.getId() + ". " +
 							employee.getFirstName() + " " + employee.getLastName() + "     " + employee.getSalary()

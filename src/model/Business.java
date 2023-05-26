@@ -2,20 +2,24 @@ package model;
 
 import view.IoManager;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Business {
     private String name;
     private String city;
     private Employee[] employeesArray = new Employee[1];
+    private ArrayList<Employee> employeesList = new ArrayList<Employee>();
 
     public Business() {
         this.employeesArray[0] = null;
     }
 
     public void addEmployee(Employee employee) {
-        this.employeesArray[this.employeesArray.length - 1] = employee;
-        this.incremVectorSize();
+        this.employeesList.add(employee);
     }
 
+    /*
     public void incremVectorSize() {
         Employee[] vector = new Employee[this.employeesArray.length + 1];
 
@@ -27,6 +31,8 @@ public class Business {
         this.employeesArray = vector;
     }
 
+
+
     public void decrementVectorSize() {
         Employee[] vector = new Employee[this.employeesArray.length - 1];
 
@@ -37,6 +43,7 @@ public class Business {
         vector[vector.length - 1] = null;
         this.employeesArray = vector;
     }
+    */
 
     public String myGetStringEmployeesArray2() {
         String output = "/n";
@@ -56,8 +63,8 @@ public class Business {
     public short findEmployee(short id) {
         short position = -1;
 
-        for(short i = 0; i < this.employeesArray.length - 1; ++i) {
-            if (this.employeesArray[i].getId() == id) {
+        for(short i = 0; i < this.employeesList.size() - 1; ++i) {
+            if (this.employeesList.get(i).getId() == id) {
                 position = i;
             }
         }
@@ -67,9 +74,13 @@ public class Business {
 
     public String getEmployeeData(int pos) {
         String txt = "";
-        return txt + this.employeesArray[pos];
+        return txt + this.employeesList.get(pos);
     }
 
+    public void deleteEmployee(short pos){
+        this.employeesList.remove(pos);
+    }
+    /*
     public void deleteEmploye(short pos) {
         Employee[] temp = new Employee[this.employeesArray.length];
         this.employeesArray[pos] = null;
@@ -85,12 +96,14 @@ public class Business {
         this.decrementVectorSize();
     }
 
+     */
+
     public void modify(short id) {
         IoManager io = new IoManager();
-        this.employeesArray[id].setFirstName(io.readGraphicInput("Ingrese el nuevo nombre"));
-        this.employeesArray[id].setLastName(io.readGraphicInput("Ingrese el nuevo apellido"));
-        this.employeesArray[id].setSalary(io.readDoubleGraphicInput("ingrese el nuevo salario"));
-        this.employeesArray[id].setNumberChildrens(io.readByteGraphicInput("Ingrese el nuevo número de hijos"));
+        this.employeesList.get(id).setFirstName(io.readGraphicInput("Ingrese el nuevo nombre"));
+        this.employeesList.get(id).setLastName(io.readGraphicInput("Ingrese el nuevo apellido"));
+        this.employeesList.get(id).setSalary(io.readDoubleGraphicInput("ingrese el nuevo salario"));
+        this.employeesList.get(id).setNumberChildrens(io.readByteGraphicInput("Ingrese el nuevo número de hijos"));
     }
 
     public void verifyId(short id) throws Exception{
@@ -114,6 +127,14 @@ public class Business {
         this.city = city;
     }
 
+    public ArrayList<Employee>  getEmployeesList(){
+        return this.employeesList;
+    }
+
+    public void setEmployeesList(ArrayList<Employee> employeesList){
+        this.employeesList = employeesList;
+    }
+    /*
     public Employee[] getEmployeesArray() {
         return this.employeesArray;
     }
@@ -121,4 +142,6 @@ public class Business {
     public void setEmployeesArray(Employee[] employeesArray) {
         this.employeesArray = employeesArray;
     }
+    */
+
 }

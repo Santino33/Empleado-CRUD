@@ -36,12 +36,12 @@ public class Employee {
 			System.out.println(birthDate);
 			System.out.println(birthDate.getDay() + "// " + birthDate.getMonth() + "// " + birthDate.getYear());
 
-			if (birthDate.getDay() > 0 && birthDate.getDay() <= 31 && birthDate.getMonth() > 0 && birthDate.getMonth() < 12 && birthDate.getYear() > 1900 && birthDate.getYear() < 2023)
+			if (birthDate.getDay() > 0 && birthDate.getDay() <= 31 && birthDate.getMonth() > 0 && birthDate.getMonth() <= 12 && birthDate.getYear() > 1900 && birthDate.getYear() < 2023)
 				System.out.println("Si cumple");
 			else {
 				if (birthDate.getDay() > 0 && birthDate.getDay() <= 31) System.out.println("Day: true");
 				  else System.out.println("Day: false "+birthDate.getDay());
-				if (birthDate.getMonth() > 0 && birthDate.getMonth() < 12) System.out.println("Month: true");
+				if (birthDate.getMonth() > 0 && birthDate.getMonth() <= 12) System.out.println("Month: true");
 				  else System.out.println("Month: false "+birthDate.getMonth());
 				if (birthDate.getYear() > 1900 && birthDate.getYear() < 2023) System.out.println("Year: true");
 				  else System.out.println("Year: false "+birthDate.getYear());
@@ -74,6 +74,7 @@ public class Employee {
 	}
 
 	public void setId(short id) {
+
 		this.id = id;
 	}
 
