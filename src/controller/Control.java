@@ -1,5 +1,7 @@
 package controller;
 
+import Persistence.MyFile;
+import Persistence.MyFile;
 import model.Business;
 import model.Date;
 import model.Employee;
@@ -8,14 +10,18 @@ import view.IoManager;
 public class Control {
 	private IoManager io = new IoManager();
 	Business business = new Business();
+	private MyFile myFile;
 
 	public Control() {
+		myFile = new MyFile("C:/Temp2/empleados.csv");
 	}
 
 	public void init() {
 		this.business.setName(this.io.readGraphicInput("Nombre del negocio"));
-		this.business.setCity(this.io.readGraphicInput("ciudad"));
+		this.business.setCity(this.io.readGraphicInput("Ciudad"));
+		this.business.loadEmployees(myFile);
 		this.menu();
+		myFile.closeFile();
 	}
 
 	public void menu() {
@@ -47,6 +53,7 @@ public class Control {
 					break;
 				case 8:
 					this.io.showGraphicMessage("Finalizar");
+					this.business.recordEmployees(myFile);
 					break;
 				default:
 					this.io.showGraphicErrorMessage("Opcion Incorrecta");
@@ -66,6 +73,7 @@ public class Control {
 		employee.setLastName(io.readGraphicInput("Ingrese su apellido"));
 		employee.setSalary(io.readDoubleGraphicInput("Ingrese su salario"));
 		employee.setNumberChildrens(io.readByteGraphicInput("Ingerse su numero de hijos"));
+		employee.setComission(io.readDoubleGraphicInput("Ingrese la comision"));
 		try {
 			employee.setBirthDate(io.readGraphicDate("Fecha de nacimiento - "));
 			employee.setHireDate(io.readGraphicDate("Fecha de contratacion - "));
@@ -74,6 +82,7 @@ public class Control {
 			this.createEmployee();
 		}
 		business.addEmployee(employee);
+
 
 	}
 
@@ -94,14 +103,14 @@ public class Control {
 		this.io.showGraphicMessage(this.business.getEmployeeData(this.business.findEmployee(id)));
 	}
 		public void printAllEmployees(){
-			String output = "ID   Nombre            Salario         N. Hijos   F. Contratación      F.Nacimiento\n-----------------------------------------------------------------------------------------------------------\n";
+			String output = "ID   Nombre            Salario         N. Hijos    Comision    F. Contratación      F.Nacimiento\n-----------------------------------------------------------------------------------------------------------\n";
 
 			for (Employee employee : business.getEmployeesList()) {
 				if (employee != null) {
 					output += employee.getId() + ". " +
 							employee.getFirstName() + " " + employee.getLastName() + "     " + employee.getSalary()
-							+ "       " +
-							employee.getNumberChildrens() + "      " + employee.getHireDate() + "       "
+							+ "       " + employee.getNumberChildrens()+ "       "+
+							employee.getComission() + "      " + employee.getHireDate() + "       "
 							+ employee.getBirthDate() + "\n";
 				}
 			}
@@ -112,5 +121,8 @@ public class Control {
 	public void liquidateEmployee() {
 
 	}
+
+
+
 }
 

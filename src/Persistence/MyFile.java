@@ -7,14 +7,17 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class myFile {
+public class MyFile {
     File f;
     FileWriter fw;
     FileReader fr;
     BufferedWriter bw = null;
     BufferedReader br = null;
 
-    public myFile(String nameFile) {
+
+
+
+    public MyFile(String nameFile) {
         f = new File(nameFile);
     }
 

@@ -1,5 +1,6 @@
 package model;
 
+import Persistence.MyFile;
 import view.IoManager;
 
 import java.lang.reflect.Array;
@@ -8,56 +9,15 @@ import java.util.ArrayList;
 public class Business {
     private String name;
     private String city;
-    private Employee[] employeesArray = new Employee[1];
-    private ArrayList<Employee> employeesList = new ArrayList<Employee>();
+
+    private ArrayList<Employee> employeesList;
 
     public Business() {
-        this.employeesArray[0] = null;
+        this.employeesList = new ArrayList<Employee>();
     }
 
     public void addEmployee(Employee employee) {
         this.employeesList.add(employee);
-    }
-
-    /*
-    public void incremVectorSize() {
-        Employee[] vector = new Employee[this.employeesArray.length + 1];
-
-        for(int i = 0; i < this.employeesArray.length; ++i) {
-            vector[i] = this.employeesArray[i];
-        }
-
-        vector[this.employeesArray.length] = null;
-        this.employeesArray = vector;
-    }
-
-
-
-    public void decrementVectorSize() {
-        Employee[] vector = new Employee[this.employeesArray.length - 1];
-
-        for(int i = 0; i < vector.length; ++i) {
-            vector[i] = this.employeesArray[i];
-        }
-
-        vector[vector.length - 1] = null;
-        this.employeesArray = vector;
-    }
-    */
-
-    public String myGetStringEmployeesArray2() {
-        String output = "/n";
-        Employee[] var5;
-        int var4 = (var5 = this.employeesArray).length;
-
-        for(int var3 = 0; var3 < var4; ++var3) {
-            Employee employee = var5[var3];
-            if (employee != null) {
-                output = output + employee;
-            }
-        }
-
-        return output;
     }
 
     public short findEmployee(short id) {
@@ -80,23 +40,6 @@ public class Business {
     public void deleteEmployee(short pos){
         this.employeesList.remove(pos);
     }
-    /*
-    public void deleteEmploye(short pos) {
-        Employee[] temp = new Employee[this.employeesArray.length];
-        this.employeesArray[pos] = null;
-
-        for(int i = pos; i + 1 < this.employeesArray.length; ++i) {
-            if (this.employeesArray[i + 1] != null) {
-                temp[0] = this.employeesArray[i + 1];
-                this.employeesArray[i + 1] = this.employeesArray[i];
-                this.employeesArray[i] = temp[0];
-            }
-        }
-
-        this.decrementVectorSize();
-    }
-
-     */
 
     public void modify(short id) {
         IoManager io = new IoManager();
@@ -109,6 +52,53 @@ public class Business {
     public void verifyId(short id) throws Exception{
         short listID;
         
+    }
+
+    public Date createDate(String dateString){
+        String [] dateRead;
+        dateRead = dateString.split("/");
+        Date date = new Date(Short.parseShort(dateRead[0]) , Short.parseShort(dateRead[1]), Short.parseShort(dateRead[2]));
+        return date;
+    }
+    public void loadEmployees(MyFile myFile){
+        //Abrir un archivo, hacer un while infinito hasta que se encuentren datos
+        myFile.openFile('r');
+        String input ="";
+        String [] employeeData;
+        while ((input=myFile.read()) != null){
+            employeeData = input.split(",");
+            Employee employee = new Employee(Short.parseShort(employeeData[0]), employeeData[1], employeeData[2], Double.parseDouble(employeeData[3]), Byte.parseByte(employeeData[4]), Double.parseDouble(employeeData[5]), createDate(employeeData[6]), createDate(employeeData[7]));
+            this.addEmployee(employee);
+        }
+        myFile.closeFile();
+        //Hacer un split al buffer leido
+        //Interpretar cada uno de los elementos de la cadena para ir
+        //Construyendo cada elemento que requiere el objeto empleado
+        //objeto fecha
+        //cerrar el archivo
+    }
+    public void recordEmployees(MyFile myfile){
+        //abrir el archivo en modo W
+        myfile.openFile('w');
+        for(Employee employee : employeesList){
+            String output = "";
+            output += employee.getId()+",";
+            output += employee.getFirstName()+",";
+            output += employee.getLastName()+",";
+            output += employee.getSalary()+",";
+            output += employee.getNumberChildrens()+",";
+            output += employee.getComission()+",";
+            output += employee.getBirthDate()+",";
+            output += employee.getHireDate();
+            myfile.record(output);
+            System.out.print("Ya se guardo");
+        }
+        myfile.closeFile();
+        //Hacer un for each al arreglo de empleados
+        //en cada elemento se va emppaquetando en un string de salida
+        //cada uno de los datos, intercalados con una coma ya que esta trabajando con csv
+        //se manda grabar la cadena al archivo
+        //cuando se salga del for each se cierra el archivo
     }
 
     public String getName() {
@@ -134,14 +124,5 @@ public class Business {
     public void setEmployeesList(ArrayList<Employee> employeesList){
         this.employeesList = employeesList;
     }
-    /*
-    public Employee[] getEmployeesArray() {
-        return this.employeesArray;
-    }
-
-    public void setEmployeesArray(Employee[] employeesArray) {
-        this.employeesArray = employeesArray;
-    }
-    */
 
 }
