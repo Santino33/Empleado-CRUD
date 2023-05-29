@@ -23,7 +23,7 @@ public class Business {
     public short findEmployee(short id) {
         short position = -1;
 
-        for(short i = 0; i < this.employeesList.size() - 1; ++i) {
+        for(short i = 0; i < this.employeesList.size() ; ++i) {
             if (this.employeesList.get(i).getId() == id) {
                 position = i;
             }
@@ -80,8 +80,11 @@ public class Business {
     public void recordEmployees(MyFile myfile){
         //abrir el archivo en modo W
         myfile.openFile('w');
+        //Hacer un for each al arreglo de empleados
         for(Employee employee : employeesList){
+            //en cada elemento se va emppaquetando en un string de salida
             String output = "";
+            //cada uno de los datos, intercalados con una coma ya que esta trabajando con csv
             output += employee.getId()+",";
             output += employee.getFirstName()+",";
             output += employee.getLastName()+",";
@@ -90,15 +93,17 @@ public class Business {
             output += employee.getComission()+",";
             output += employee.getBirthDate()+",";
             output += employee.getHireDate();
+            //se manda grabar la cadena al archivo
             myfile.record(output);
             System.out.print("Ya se guardo");
         }
-        myfile.closeFile();
-        //Hacer un for each al arreglo de empleados
-        //en cada elemento se va emppaquetando en un string de salida
-        //cada uno de los datos, intercalados con una coma ya que esta trabajando con csv
-        //se manda grabar la cadena al archivo
         //cuando se salga del for each se cierra el archivo
+        myfile.closeFile();
+
+
+
+
+
     }
 
     public String getName() {
