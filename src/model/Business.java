@@ -53,6 +53,21 @@ public class Business {
         short listID;
         
     }
+    public ArrayList<Employee> arrangeEmployeesID(){
+        boolean change = false;
+        do {
+            change = false;
+            for (int i =0; i < employeesList.size()-1; i++) {
+                if (employeesList.get(i).getId() > employeesList.get(i +1).getId()) {
+                    Employee employeeTemp = employeesList.get(i);
+                    employeesList.set(i, employeesList.get(i +1));
+                    employeesList.set(i+1, employeeTemp);
+                    change = true;
+                }
+            }
+        }while(change);
+        return employeesList;
+    }
 
     public Date createDate(String dateString){
         String [] dateRead;
@@ -66,20 +81,24 @@ public class Business {
         String input ="";
         String [] employeeData;
         while ((input=myFile.read()) != null){
+            //Hacer un split al buffer leido
             employeeData = input.split(",");
+            //Construyendo cada elemento que requiere el objeto empleado
             Employee employee = new Employee(Short.parseShort(employeeData[0]), employeeData[1], employeeData[2], Double.parseDouble(employeeData[3]), Byte.parseByte(employeeData[4]), Double.parseDouble(employeeData[5]), createDate(employeeData[6]), createDate(employeeData[7]));
             this.addEmployee(employee);
         }
-        myFile.closeFile();
-        //Hacer un split al buffer leido
-        //Interpretar cada uno de los elementos de la cadena para ir
-        //Construyendo cada elemento que requiere el objeto empleado
-        //objeto fecha
         //cerrar el archivo
+        myFile.closeFile();
     }
     public void recordEmployees(MyFile myfile){
         //abrir el archivo en modo W
         myfile.openFile('w');
+
+        //Organiza los empleados en orden de ID
+        employeesList = arrangeEmployeesID();
+        
+
+
         //Hacer un for each al arreglo de empleados
         for(Employee employee : employeesList){
             //en cada elemento se va emppaquetando en un string de salida
@@ -126,6 +145,7 @@ public class Business {
         return this.employeesList;
     }
 
+    public int getEmployeesCount(){ return this.employeesList.size();}
     public void setEmployeesList(ArrayList<Employee> employeesList){
         this.employeesList = employeesList;
     }

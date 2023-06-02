@@ -53,6 +53,7 @@ public class Control {
 					break;
 				case 8:
 					this.io.showGraphicMessage("Finalizar");
+					business.arrangeEmployeesID();
 					this.business.recordEmployees(myFile);
 					break;
 				default:
@@ -63,7 +64,7 @@ public class Control {
 	}
 
 	public void printBussinesData() {
-		this.io.showGraphicMessage(this.business.getName() + "\n" + this.business.getCity());
+		this.io.showGraphicMessage(this.business.getName() + "\n" + this.business.getCity() + "\n" + "Numero de empleados: " + this.business.getEmployeesCount());
 	}
 
 	public void createEmployee() {
@@ -82,7 +83,6 @@ public class Control {
 			this.createEmployee();
 		}
 		business.addEmployee(employee);
-
 
 	}
 
